@@ -1,0 +1,46 @@
+<app-card [title]="cardTitle">
+  <div class="text-right mb-3" role="header">
+    <a [routerLink]="['account/add']" class="btn btn-primary"
+      >ანგარიშის დამატება</a
+    >
+  </div>
+  <div role="body">
+    <ng-container *ngIf="accounts && accounts.length > 0">
+      <ul
+        class="list-group mb-3"
+        *ngFor="let account of accounts; let i = index"
+      >
+        <li class="list-group-item active">
+          <span class="font-weight-bold">ანგარიში: </span>{{ account?.id }}
+        </li>
+        <li class="list-group-item">
+          <span class="font-weight-bold">ანგარიშის ტიპი: </span>
+          {{ accountTypes[account.accountType] }}
+        </li>
+        <li class="list-group-item">
+          <span class="font-weight-bold">ვალუტები: </span>
+          <ng-container *ngFor="let item of account.currencies"
+            ><span class="badge badge-info mr-1" *ngIf="item.selected">{{
+              item.currency
+            }}</span></ng-container
+          >
+        </li>
+        <li class="list-group-item d-flex align-items-center">
+          <span class="font-weight-bold mr-1">ანგარიშის სტატუსი: </span>
+          <ng-container>
+            {{ account.accountStatus === 1 ? "აქტიური" : "დახურული" }}
+            <button
+              class="btn ml-auto"
+              [ngClass]="
+                account.accountStatus === 1 ? 'btn-danger' : 'btn-primary'
+              "
+              (click)="toggleStatus(account)"
+            >
+              {{ account.accountStatus === 1 ? "დახურვა" : "გააქტიურება" }}
+            </button>
+          </ng-container>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</app-card>

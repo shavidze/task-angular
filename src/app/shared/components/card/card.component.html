@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">
+    {{ title }}
+  </div>
+  <div class="card-body">
+    <ng-content select="[role=header]"></ng-content>
+    <ng-content select="[role=body]"></ng-content>
+  </div>
+  <div class="card-footer">
+    <ng-content select="[role=footer]"></ng-content>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<app-card [title]="cardTitle">
+    <div class="text-right mb-3" role="header">
+        <a [routerLink]="['add']" class="btn btn-primary">კლიენტის დამატება</a>
+    </div>
+    <app-table
+        [columns]="tableColumns"
+        [data]="clients"
+        (orderBy)="orderBy($event)"
+        (search)="search($event)"
+        (filter)="filter($event)"
+        (remove)="deleteClient($event)"
+        role="body"
+    ></app-table>
+    <app-pagination
+        [totalPages]="totalPages"
+        [activePage]="activePage"
+        (pageChanged)="pageChanged($event)"
+        role="footer"
+    ></app-pagination>
+</app-card>

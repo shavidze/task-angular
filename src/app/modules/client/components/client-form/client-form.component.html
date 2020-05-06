@@ -1,0 +1,302 @@
+<form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+  <app-card [title]="cardTitle">
+    <div class="container-fluid" role="body">
+      <div class="row">
+        <div class="form-group col-12 col-md-6">
+          <label>სახელი</label>
+          <div class="input-group">
+            <div
+              (click)="toggleLanguage(activeLang)"
+              class="input-group-prepend c-p"
+            >
+              <span class="input-group-text">{{ activeLang }}</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+              [class.is-invalid]="validate('firstName')"
+            />
+            <div class="invalid-feedback" *ngIf="validate('firstName')">
+              <div *ngIf="clientForm.controls['firstName'].errors.required">
+                {{ getValidationMessage('required') }}
+              </div>
+              <div *ngIf="clientForm.controls['firstName'].errors.minlength">
+                {{ getValidationMessage('minlength', 3) }}
+              </div>
+              <div *ngIf="clientForm.controls['firstName'].errors.pattern">
+                {{ getValidationMessage('languagePattern') }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label>გვარი</label>
+          <div class="input-group">
+            <div
+              (click)="toggleLanguage(activeLang)"
+              class="input-group-prepend c-p"
+            >
+              <span class="input-group-text">{{ activeLang }}</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+              [class.is-invalid]="validate('lastName')"
+            />
+            <div class="invalid-feedback" *ngIf="validate('lastName')">
+              <div *ngIf="clientForm.controls['lastName'].errors.required">
+                {{ getValidationMessage('required') }}
+              </div>
+              <div *ngIf="clientForm.controls['lastName'].errors.minlength">
+                {{ getValidationMessage('minlength', 3) }}
+              </div>
+              <div *ngIf="clientForm.controls['lastName'].errors.pattern">
+                {{ getValidationMessage('languagePattern') }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label>სქესი</label>
+          <select
+            formControlName="gender"
+            class="form-control"
+            [class.is-invalid]="validate('gender')"
+          >
+            <option
+              *ngFor="let option of genderOptions"
+              [ngValue]="option.value"
+            >
+              {{ option.title }}
+            </option>
+          </select>
+          <div class="invalid-feedback" *ngIf="validate('gender')">
+            <div *ngIf="clientForm.controls['gender'].errors.required">
+              {{ getValidationMessage('required') }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label>პირადი ნომერი</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="personalNumber"
+            [class.is-invalid]="validate('personalNumber')"
+          />
+          <div class="invalid-feedback" *ngIf="validate('personalNumber')">
+            <div *ngIf="clientForm.controls['personalNumber'].errors.required">
+              {{ getValidationMessage('required') }}
+            </div>
+            <div *ngIf="clientForm.controls['personalNumber'].errors.minlength">
+              {{ getValidationMessage('minlength', 11) }}
+            </div>
+            <div *ngIf="clientForm.controls['personalNumber'].errors.maxlength">
+              {{ getValidationMessage('maxlength', 11) }}
+            </div>
+            <div *ngIf="clientForm.controls['personalNumber'].errors.pattern">
+              {{ getValidationMessage('numberPattern') }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label>მობილური</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="mobile"
+            [class.is-invalid]="validate('mobile')"
+          />
+          <div class="invalid-feedback" *ngIf="validate('mobile')">
+            <div *ngIf="clientForm.controls['mobile'].errors.pattern">
+              {{ getValidationMessage('mobilePattern') }}
+            </div>
+            <div *ngIf="clientForm.controls['mobile'].errors.required">
+              {{ getValidationMessage('required') }}
+            </div>
+            <div *ngIf="clientForm.controls['mobile'].errors.minlength">
+              {{ getValidationMessage('minlength', 9) }}
+            </div>
+            <div *ngIf="clientForm.controls['mobile'].errors.maxlength">
+              {{ getValidationMessage('maxlength', 9) }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <label>ფოტოსურათის მისამართი</label>
+          <input type="text" class="form-control" formControlName="image" />
+        </div>
+        <div class="form-group col-12 col-md-6" formGroupName="legalAddress">
+          <label>იურიდიული მისამართი</label>
+          <div class="row form-row">
+            <div class="form-group">
+              <div class="row align-items-center">
+                <div class="col-4 text-right">ქვეყანა</div>
+                <div class="col-8 mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="country"
+                    [class.is-invalid]="
+                      validateSubControl('legalAddress', 'country')
+                    "
+                  />
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="validateSubControl('legalAddress', 'country')"
+                  >
+                    <div
+                      *ngIf="
+                        clientForm.controls['legalAddress'].controls['country']
+                          .errors.required
+                      "
+                    >
+                      {{ getValidationMessage('required') }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 text-right">ქალაქი</div>
+                <div class="col-8 mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="city"
+                    [class.is-invalid]="
+                      validateSubControl('legalAddress', 'city')
+                    "
+                  />
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="validateSubControl('legalAddress', 'city')"
+                  >
+                    <div
+                      *ngIf="
+                        clientForm.controls['legalAddress'].controls['city']
+                          .errors.required
+                      "
+                    >
+                      {{ getValidationMessage('required') }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 text-right">მისამართი</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="address"
+                    [class.is-invalid]="
+                      validateSubControl('legalAddress', 'address')
+                    "
+                  />
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="validateSubControl('legalAddress', 'address')"
+                  >
+                    <div
+                      *ngIf="
+                        clientForm.controls['legalAddress'].controls['address']
+                          .errors.required
+                      "
+                    >
+                      {{ getValidationMessage('required') }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-md-6" formGroupName="actualAddress">
+          <label>ფაქტიური მისამართი</label>
+          <div class="row form-row">
+            <div class="form-group">
+              <div class="row align-items-center">
+                <div class="col-4 text-right">ქვეყანა</div>
+                <div class="col-8 mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="country"
+                    [class.is-invalid]="
+                      validateSubControl('actualAddress', 'country')
+                    "
+                  />
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="validateSubControl('actualAddress', 'country')"
+                  >
+                    <div
+                      *ngIf="
+                        clientForm.controls['actualAddress'].controls['country']
+                          .errors.required
+                      "
+                    >
+                      {{ getValidationMessage('required') }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 text-right">ქალაქი</div>
+                <div class="col-8 mb-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="city"
+                    [class.is-invalid]="
+                      validateSubControl('actualAddress', 'city')
+                    "
+                  />
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="validateSubControl('actualAddress', 'city')"
+                  >
+                    <div
+                      *ngIf="
+                        clientForm.controls['actualAddress'].controls['city']
+                          .errors.required
+                      "
+                    >
+                      {{ getValidationMessage('required') }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-4 text-right">მისამართი</div>
+                <div class="col-8">
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="address"
+                    [class.is-invalid]="
+                      validateSubControl('actualAddress', 'address')
+                    "
+                  />
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="validateSubControl('actualAddress', 'address')"
+                  >
+                    <div
+                      *ngIf="
+                        clientForm.controls['actualAddress'].controls['address']
+                          .errors.required
+                      "
+                    >
+                      {{ getValidationMessage('required') }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div role="footer" class="text-right">
+      <a [routerLink]="['/clients']" class="btn btn-danger mr-2">დაბრუნება</a>
+      <button class="btn btn-primary" [disabled]="!clientForm.valid">
+        შენახვა
+      </button>
+    </div>
+  </app-card>
+</form>

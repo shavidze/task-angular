@@ -1,0 +1,91 @@
+<div class="table-responsive">
+    <form
+        class="form-group d-flex align-items-center"
+        [formGroup]="searchForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <input
+            type="text"
+            placeholder="ძიება"
+            class="form-control"
+            formControlName="query"
+        />
+        <button
+            type="submit"
+            class="btn btn-primary ml-3"
+            [disabled]="!searchForm.valid"
+        >
+            ძიება
+        </button>
+    </form>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <ng-container *ngFor="let column of columns">
+                    <th>
+                        <div>
+                            {{ column.title }}
+                            <fa-icon
+                                [icon]="faArrowUp"
+                                class="mx-1 c-p"
+                                [class.text-primary]="
+                                    isOrder(column.key, 'asc')
+                                "
+                                (click)="sort(column.key, 'asc')"
+                            ></fa-icon>
+                            <fa-icon
+                                [icon]="faArrowdown"
+                                class="c-p"
+                                [class.text-primary]="
+                                    isOrder(column.key, 'desc')
+                                "
+                                (click)="sort(column.key, 'desc')"
+                            ></fa-icon>
+                        </div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="keywords[column.key]"
+                            (ngModelChange)="
+                                modelChanged(column.filterKey, $event)
+                            "
+                        />
+                    </th>
+                </ng-container>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of data">
+                <tr>
+                    <ng-container *ngFor="let column of columns">
+                        <td>{{ item[column.key] }}</td>
+                    </ng-container>
+                    <td>
+                        <a
+                            href="javascript:void(0)"
+                            class="mx-2"
+                            [routerLink]="['edit/' + item.id]"
+                        >
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </a>
+                        <a
+                            href="javascript:void(0)"
+                            class="mx-2"
+                            [routerLink]="['details/' + item.id]"
+                        >
+                            <fa-icon [icon]="faInfo"></fa-icon>
+                        </a>
+                        <a
+                            href="javascript:void(0)"
+                            class="mx-2"
+                            (click)="delete(item.id)"
+                        >
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </a>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

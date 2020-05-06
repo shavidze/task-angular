@@ -1,0 +1,202 @@
+{
+  "clients": [
+    {
+      "firstName": "Shavlego",
+      "lastName": "Madliani",
+      "gender": 1,
+      "personalNumber": "11111111111",
+      "mobile": "511111111",
+      "legalAddress": {
+        "country": "Georgia",
+        "city": "Rustavi",
+        "address": "Todria street"
+      },
+      "actualAddress": {
+        "country": "Georgia",
+        "city": "Tbilisi",
+        "address": "Chonkadze street"
+      },
+      "image": "https://avatarfiles.alphacoders.com/894/89417.jpg",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "firstName": "John",
+      "lastName": "Jao",
+      "gender": 1,
+      "personalNumber": "21111111111",
+      "mobile": "511111111",
+      "legalAddress": {
+        "country": "Georgia",
+        "city": "Rustavi",
+        "address": "Todria street"
+      },
+      "actualAddress": {
+        "country": "Georgia",
+        "city": "Tbilisi",
+        "address": "Todria street"
+      },
+      "image": "https://avatarfiles.alphacoders.com/894/89419.jpg"
+    },
+    {
+      "id": 3,
+      "firstName": "Alex",
+      "lastName": "Funny",
+      "gender": 2,
+      "personalNumber": "31111111111",
+      "mobile": "511111111",
+      "legalAddress": {
+        "country": "Georgia",
+        "city": "Rustavi",
+        "address": "Todria street"
+      },
+      "actualAddress": {
+        "country": "Georgia",
+        "city": "Tbilisi",
+        "address": "Todria street"
+      },
+      "image": "https://i.pinimg.com/originals/b4/23/0e/b4230e370a1b97e245816e8e5ab8d426.jpg"
+    },
+    {
+      "id": 4,
+      "firstName": "George",
+      "lastName": "Green",
+      "gender": 1,
+      "personalNumber": "41111111111",
+      "mobile": "511111111",
+      "legalAddress": {
+        "country": "Georgia",
+        "city": "Rustavi",
+        "address": "Todria street"
+      },
+      "actualAddress": {
+        "country": "Georgia",
+        "city": "Tbilisi",
+        "address": "Todria street"
+      },
+      "image": "http://images6.fanpop.com/image/photos/33000000/Mr-Bean-old-school-comedy-33004076-600-328.jpg"
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "clientNumber": 1,
+      "accountType": 1,
+      "accountStatus": 1,
+      "currencies": [
+        {
+          "currency": "gel",
+          "selected": true
+        },
+        {
+          "currency": "usd",
+          "selected": true
+        },
+        {
+          "currency": "eur",
+          "selected": false
+        },
+        {
+          "currency": "rub",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "clientNumber": 2,
+      "accountType": 1,
+      "accountStatus": 1,
+      "currencies": [
+        {
+          "currency": "GEL",
+          "selected": true
+        },
+        {
+          "currency": "USD",
+          "selected": false
+        },
+        {
+          "currency": "EUR",
+          "selected": true
+        },
+        {
+          "currency": "RUB",
+          "selected": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "clientNumber": 1,
+      "currencies": [
+        {
+          "currency": "gel",
+          "selected": true
+        },
+        {
+          "currency": "usd",
+          "selected": true
+        },
+        {
+          "currency": "eur",
+          "selected": false
+        },
+        {
+          "currency": "rub",
+          "selected": false
+        }
+      ],
+      "accountType": 2,
+      "accountStatus": 2
+    },
+    {
+      "id": 4,
+      "clientNumber": 1,
+      "currencies": [
+        {
+          "currency": "gel",
+          "selected": false
+        },
+        {
+          "currency": "usd",
+          "selected": true
+        },
+        {
+          "currency": "eur",
+          "selected": false
+        },
+        {
+          "currency": "rub",
+          "selected": true
+        }
+      ],
+      "accountType": 1,
+      "accountStatus": 2
+    },
+    {
+      "clientNumber": 1,
+      "currencies": [
+        {
+          "currency": "gel",
+          "selected": true
+        },
+        {
+          "currency": "usd",
+          "selected": true
+        },
+        {
+          "currency": "eur",
+          "selected": true
+        },
+        {
+          "currency": "rub",
+          "selected": true
+        }
+      ],
+      "accountType": 1,
+      "accountStatus": 1,
+      "id": 5
+    }
+  ]
+}

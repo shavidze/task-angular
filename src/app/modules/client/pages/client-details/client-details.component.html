@@ -1,0 +1,54 @@
+<ng-container *ngIf="client">
+    <app-card [title]="cardTitle">
+        <div role="body">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <span>სახელი:</span>
+                            {{ client.firstName }} {{ client.lastName }}
+                        </li>
+                        <li class="list-group-item">
+                            <span>სქესი:</span>
+                            {{ client.gender === 1 ? 'კაცი' : 'ქალი' }}
+                        </li>
+                        <li class="list-group-item">
+                            <span>პირადი ნომერი:</span>
+                            {{ client.personalNumber }}
+                        </li>
+                        <li class="list-group-item">
+                            <span>მობილურის ნომერი:</span>
+                            {{ client.mobile }}
+                        </li>
+                        <li class="list-group-item">
+                            <span>იურიდიული მისამართი:</span>
+                            {{ client.legalAddress.country }},
+                            {{ client.legalAddress.city }},
+                            {{ client.legalAddress.address }}
+                        </li>
+                        <li class="list-group-item">
+                            <span>ფაქტიური მისამართი:</span>
+                            {{ client.actualAddress.country }},
+                            {{ client.actualAddress.city }},
+                            {{ client.actualAddress.address }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-6" *ngIf="client.image">
+                    <img
+                        [src]="client.image"
+                        width="300"
+                        class="img-thumbnail"
+                    />
+                </div>
+            </div>
+        </div>
+        <div role="footer" class="text-right">
+            <a [routerLink]="['/clients']" class="btn btn-danger mr-2"
+                >დაბრუნება</a
+            >
+        </div>
+    </app-card>
+
+    <app-client-accounts [clientId]="client.id"></app-client-accounts>
+</ng-container>
